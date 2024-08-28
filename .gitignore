@@ -1,6 +1,10 @@
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.env
-*.db
+touch .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "*.pyo" >> .gitignore
+echo "*.pyd" >> .gitignore
+echo ".env" >> .gitignore
+echo "*.db" >> .gitignore
+git add .gitignore
+git commit -m "Add .gitignore"
+git push
