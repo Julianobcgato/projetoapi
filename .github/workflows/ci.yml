@@ -19,9 +19,6 @@ jobs:
           fetch-depth: 0 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.namesecret }}  
-          SONAR_TOKEN: ${{ secrets.sonartoken }}
         with:
           projectBaseDir: .
           args: |
@@ -29,6 +26,9 @@ jobs:
             -Dsonar.projectKey=monitoramento_analisedeprojeto
             -Dsonar.sources=.
             -Dsonar.host.url=https://sonarcloud.io
+        env:
+          GITHUB_TOKEN: ${{ secrets.namesecret }}  
+          SONAR_TOKEN: ${{ secrets.sonartoken }}
 
   build-and-push:
     name: Build and Push Docker Image
@@ -100,3 +100,4 @@ jobs:
           git add ./gitops/deployment.yaml
           git commit -m "Update image tag in deployment.yaml"
           git push
+
