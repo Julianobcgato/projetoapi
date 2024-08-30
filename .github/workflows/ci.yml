@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
@@ -18,15 +18,16 @@ jobs:
         with:
           fetch-depth: 0 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.namesecret }}  
           SONAR_TOKEN: ${{ secrets.sonartoken }}
         with:
           projectBaseDir: .
-          args: >
+          args: |
             -Dsonar.projectKey=fastapidemonstracao_julianobcgatoprojeto
-            -Dsonar.organization=fastapidemonstracao -X
+            -Dsonar.organization=fastapidemonstracao
+            -X
 
   build-and-push:
     name: Build and Push Docker Image
@@ -89,7 +90,7 @@ jobs:
 
       - name: Modify yaml File
         run: |
-          sed -i "s/^        image: .*/        image: julianobcgato\/projetoapi:$RUN_NUMBER/" ./gitops/deployment.yaml
+          sed -i'' "s|^        image: .*|        image: julianobcgato/projetoapi:$RUN_NUMBER|" ./gitops/deployment.yaml
 
       - name: Commit and Push Changes
         run: |
