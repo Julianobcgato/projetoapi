@@ -25,9 +25,10 @@ jobs:
         with:
           projectBaseDir: .
           args: |
-            -Dsonar.projectKey=monitoramento_analisedeprojeto
-            -Dsonar.organization=monitoramento
-            -X
+            -Dsonar.organization=monitoramento \
+            -Dsonar.projectKey=monitoramento_analisedeprojeto \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=https://sonarcloud.io
 
   build-and-push:
     name: Build and Push Docker Image
