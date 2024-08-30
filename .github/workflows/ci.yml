@@ -25,7 +25,7 @@ jobs:
         with:
           projectBaseDir: .
           args: |
-            -Dsonar.projectKey=fastapidemonstracao_julianobcgatoprojeto
+            -Dsonar.projectKey=fastapidemonstracao_monitoramento
             -Dsonar.organization=fastapidemonstracao
             -X
 
