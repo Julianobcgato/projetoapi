@@ -25,8 +25,8 @@ jobs:
         with:
           projectBaseDir: .
           args: |
-            -Dsonar.projectKey=fastapidemonstracao_monitoramento
-            -Dsonar.organization=fastapidemonstracao
+            -Dsonar.projectKey=monitoramento_analisedeprojeto
+            -Dsonar.organization=monitoramento
             -X
 
   build-and-push:
