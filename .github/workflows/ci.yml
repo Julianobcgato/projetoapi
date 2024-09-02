@@ -73,7 +73,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: julianobcgato/projetoargocd
-          token: ${{ secrets.segredops }}
+          token: ${{ secrets.argocdtoken }}
 
       - name: Set run number
         run: echo "RUN_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
