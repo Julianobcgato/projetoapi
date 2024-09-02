@@ -100,28 +100,28 @@ jobs:
           git push
 
   deploy:
-  name: Deploy to Kubernetes
-  runs-on: ubuntu-latest
-  needs: alterar_tag
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      name: Deploy to Kubernetes
+      runs-on: ubuntu-latest
+      needs: alterar_tag
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-    - name: Install Helm
-      uses: azure/setup-helm@v1
-      with:
-        version: v3.5.4
+        - name: Install Helm
+          uses: azure/setup-helm@v1
+          with:
+            version: v3.5.4
 
-    - name: Set up Kubernetes
-      uses: azure/setup-kubectl@v1
-      with:
-        version: 'v1.26.0'
+        - name: Set up Kubernetes
+          uses: azure/setup-kubectl@v1
+          with:
+            version: 'v1.26.0'
 
-    - name: Configure kubectl
-      run: |
-        echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+        - name: Configure kubectl
+          run: |
+            echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
 
-    - name: Deploy with Helm
-      run: |
-        helm upgrade --install prometheus ./helm/prometheus --namespace monitoring --create-namespace
-        helm upgrade --install grafana ./helm/grafana --namespace monitoring --create-namespace
+        - name: Deploy with Helm
+          run: |
+            helm upgrade --install prometheus ./helm/prometheus --namespace monitoring --create-namespace
+            helm upgrade --install grafana ./helm/grafana --namespace monitoring --create-namespace
