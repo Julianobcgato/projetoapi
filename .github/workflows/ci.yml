@@ -91,12 +91,15 @@ jobs:
         run: |
           sed -i "s/^        image: .*/        image: julianobcgato\/projetoapi:$RUN_NUMBER/" ./gitops/deployment.yaml
 
+      - name: Check Git status
+        run: git status
+
       - name: Commit and Push Changes
         run: |
           git config user.name "Juliano"
           git config user.email "julianobcgato@gmail.com"
           git add ./gitops/deployment.yaml
-          git commit -m "Update image tag in deployment.yaml"
+          git commit -m "Update image tag in deployment.yaml" || echo "No changes to commit"
           git push
 
  
